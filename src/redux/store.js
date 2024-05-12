@@ -1,15 +1,9 @@
 import { createStore, combineReducers } from "redux";
 import initialState from "./initialState";
 
-// import listsReducer from "./listsRedux";
-// import columnsReducer from "./columnsRedux";
-// import cardsReducer from "./cardsRedux";
-// import searchTermReducer from "./searchTermRedux";
+import { tablesReducer } from "./tablesRedux";
 
-const tablesReducer = (tables = initialState.tables, action) => {
-  return tables;
-};
-
+// reducers
 const reservationsReducer = (
   reservations = initialState.reservations,
   action
@@ -17,7 +11,7 @@ const reservationsReducer = (
   return reservations;
 };
 
-// //reducers
+// combine reducers
 const subreducers = {
   tables: tablesReducer,
   reservations: reservationsReducer,
