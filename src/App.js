@@ -1,6 +1,7 @@
 import Header from "./components/Header/Header";
 import Container from "react-bootstrap/Container";
 import Navigation from "./components/Navigation/Navigation";
+import TableList from "./components/Tables/Tables";
 
 import {
   updateTables,
@@ -27,14 +28,7 @@ const App = () => {
     <div>
       <Navigation />
       <Container>
-        <Header>Waiter.app</Header>
-        {
-          /* <Tables /> */ allTables.map((table) => (
-            <div key={table.id}>
-              table {table.id}: {table.description}
-            </div>
-          ))
-        }
+        <TableList />
       </Container>
     </div>
   );

@@ -12,6 +12,11 @@ const UPDATE_TABLES = "UPDATE_TABLES";
 export const getAllTables = (state) => {
   return state.tables;
 };
+export const getTableById = (state, tableId) => {
+  return state.tables.find((table) => table.id === tableId);
+};
+
+export const tableSelectors = { all: getAllTables, byId: getTableById };
 
 // Action creators
 export const addTable = (table) => ({
