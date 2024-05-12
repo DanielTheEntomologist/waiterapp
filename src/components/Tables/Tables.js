@@ -12,17 +12,25 @@ import ListGroup from "react-bootstrap/ListGroup";
 const TableList = () => {
   const tables = useSelector(select.tables.all);
 
+  let tablesListContent = <p>Default</p>;
+
+  if (tables.length === 0) {
+    tablesListContent = <p>Loading...</p>;
+    console.log("Loading...", tables);
+  }
+
+  if (tables.length > 0) {
+    tablesListContent = tables.map((table) => (
+      <ListGroup.Item key={table.id}>
+        <Table table={table} />
+      </ListGroup.Item>
+    ));
+  }
+
   return (
     <div>
       <Header>Waiter.app</Header>
-
-      <ListGroup>
-        {tables.map((table) => (
-          <ListGroup.Item key={table.id}>
-            <Table table={table} />
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      <ListGroup>{tablesListContent}</ListGroup>
     </div>
   );
 };
