@@ -15,9 +15,16 @@
     {
       "id": "4",
       "description": "2nd bar table"
+    },
+    {
+      "id": "6",
+      "description": "Table 6"
+    },
+    {
+      "id": "7",
+      "description": "Table 6"
     }
   ],
-
   "reservations": [
     {
       "id": "1",

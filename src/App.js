@@ -2,7 +2,13 @@ import Header from "./components/Header/Header";
 import Container from "react-bootstrap/Container";
 import Navigation from "./components/Navigation/Navigation";
 
-import { updateTables, getAllTables, fetchTables } from "./redux/tablesRedux";
+import {
+  updateTables,
+  getAllTables,
+  fetchTables,
+  addTable,
+  addTableRequest,
+} from "./redux/tablesRedux";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -10,11 +16,6 @@ const App = () => {
   console.log("App component is rendered");
 
   const dispatch = useDispatch();
-  // const fetchTables = async () => {
-  //   const response = await fetch("http://localhost:3000/api/tables");
-  //   const tables = await response.json();
-  //   dispatch(updateTables(tables));
-  // };
 
   useEffect(() => {
     dispatch(fetchTables());
