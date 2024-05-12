@@ -3,7 +3,11 @@ import styles from "./Tables.module.scss";
 import select from "../../redux/selectors";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 import Header from "../Header/Header";
+import Table from "../Table/Table";
+
+import ListGroup from "react-bootstrap/ListGroup";
 
 const TableList = () => {
   const tables = useSelector(select.tables.all);
@@ -11,11 +15,14 @@ const TableList = () => {
   return (
     <div>
       <Header>Waiter.app</Header>
-      {tables.map((table) => (
-        <div key={table.id}>
-          table {table.id}: {table.description}
-        </div>
-      ))}
+
+      <ListGroup>
+        {tables.map((table) => (
+          <ListGroup.Item key={table.id}>
+            <Table table={table} />
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
     </div>
   );
 };
