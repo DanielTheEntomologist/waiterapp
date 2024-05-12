@@ -14,8 +14,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const App = () => {
-  console.log("App component is rendered");
-
   const dispatch = useDispatch();
 
   useEffect(() => {
