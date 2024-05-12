@@ -26,10 +26,12 @@ export const updateTables = (tables) => ({
   type: UPDATE_TABLES,
   payload: tables,
 });
-export const fetchTables = (dispatch) => {
-  fetch("http://localhost:3131/api/tables")
-    .then((response) => response.json())
-    .then((tables) => dispatch(updateTables(tables)));
+export const fetchTables = () => {
+  return (dispatch) => {
+    fetch("http://localhost:3131/api/tables")
+      .then((response) => response.json())
+      .then((tables) => dispatch(updateTables(tables)));
+  };
 };
 
 // reducers

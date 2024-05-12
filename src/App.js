@@ -17,7 +17,7 @@ const App = () => {
   // };
 
   useEffect(() => {
-    fetchTables(dispatch);
+    dispatch(fetchTables());
   }, [dispatch]);
 
   const allTables = useSelector((state) => getAllTables(state));
