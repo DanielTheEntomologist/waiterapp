@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Navigation from "./components/Navigation/Navigation";
 
 const App = () => {
+  console.log("App component is rendered");
   return (
     <div>
       <Navigation />

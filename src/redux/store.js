@@ -6,19 +6,24 @@ import initialState from "./initialState";
 // import cardsReducer from "./cardsRedux";
 // import searchTermReducer from "./searchTermRedux";
 
-// //reducers
-// const subreducers = {
-//   lists: listsReducer,
-//   columns: columnsReducer,
-//   cards: cardsReducer,
-//   searchTerm: searchTermReducer,
-// };
-
-// const reducer = combineReducers(subreducers);
-
-const reducer = (state = initialState, action) => {
-  return state;
+const tablesReducer = (tables = initialState.tables, action) => {
+  return tables;
 };
+
+const reservationsReducer = (
+  reservations = initialState.reservations,
+  action
+) => {
+  return reservations;
+};
+
+// //reducers
+const subreducers = {
+  tables: tablesReducer,
+  reservations: reservationsReducer,
+};
+
+const reducer = combineReducers(subreducers);
 
 const store = createStore(
   reducer,

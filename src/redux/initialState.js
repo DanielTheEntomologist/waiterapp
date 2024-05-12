@@ -17,7 +17,6 @@ const initialState = {
       description: "2nd bar table",
     },
   ],
-
   reservations: [
     {
       id: "1",
