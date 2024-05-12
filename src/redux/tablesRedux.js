@@ -6,9 +6,12 @@ import initialState from "./initialState";
 const ADD_TABLE = "ADD_TABLE";
 const REMOVE_TABLE = "REMOVE_TABLE";
 const UPDATE_TABLE = "UPDATE_TABLE";
+const UPDATE_TABLES = "UPDATE_TABLES";
 
 // Selectors
-export const getAllTables = (state) => state.tables;
+export const getAllTables = (state) => {
+  return state.tables;
+};
 
 // Action creators
 export const addTable = (table) => ({
@@ -19,9 +22,9 @@ export const removeTable = (tableId) => ({
   type: REMOVE_TABLE,
   payload: tableId,
 });
-export const updateTable = (table) => ({
-  type: UPDATE_TABLE,
-  payload: table,
+export const updateTables = (tables) => ({
+  type: UPDATE_TABLES,
+  payload: tables,
 });
 
 // reducers
@@ -31,10 +34,8 @@ export const tablesReducer = (tables = initialState.tables, action) => {
       return [...tables, action.payload];
     case REMOVE_TABLE:
       return tables.filter((table) => table.id !== action.payload);
-    case UPDATE_TABLE:
-      return tables.map((table) =>
-        table.id === action.payload.id ? action.payload : table
-      );
+    case UPDATE_TABLES:
+      return [...action.payload];
     default:
       return tables;
   }
