@@ -1,20 +1,19 @@
-import styles from "./Table.module.scss";
+import styles from "./TableForm.module.scss";
 
-import { Link } from "react-router-dom";
-
-import Button from "react-bootstrap/Button";
+import { useParams } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-const TableForm = ({ table }) => {
-  const { id, description } = table;
+const TableForm = () => {
+  // const { id, description } = table;
+  const { tableId } = useParams();
+  const id = tableId;
+
   return (
     <Form>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <div className="h3 d-flex justify-content-center">
-          Table {table.id}{" "}
-        </div>
+        <div className="h3 d-flex justify-content-start p-3">Table {id} </div>
         <Form.Label>Email address</Form.Label>
         <Form.Control type="email" placeholder="Enter email" />
         <Form.Text className="text-muted">
@@ -36,4 +35,4 @@ const TableForm = ({ table }) => {
   );
 };
 
-export default Table;
+export default TableForm;
