@@ -26,6 +26,11 @@ export const updateTables = (tables) => ({
   type: UPDATE_TABLES,
   payload: tables,
 });
+export const fetchTables = (dispatch) => {
+  fetch("http://localhost:3131/api/tables")
+    .then((response) => response.json())
+    .then((tables) => dispatch(updateTables(tables)));
+};
 
 // reducers
 export const tablesReducer = (tables = initialState.tables, action) => {
