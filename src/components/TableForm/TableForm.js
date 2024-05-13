@@ -2,17 +2,24 @@ import styles from "./TableForm.module.scss";
 
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
+import select from "../../redux/selectors";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+import { RedirectToHome } from "../../App";
+
 const TableForm = () => {
   // const { id, description } = table;
   const { tableId } = useParams();
   const id = tableId;
+
+  const tables = useSelector(select.tables.all);
+  const tableIds = Object.keys(tables);
 
   const [status, setStatus] = useState("free");
   const [people, setPeople] = useState(0);
@@ -57,6 +64,28 @@ const TableForm = () => {
     }
   };
 
+  let billInput = null;
+  if (status === "busy") {
+    billInput = (
+      <InputGroup className="mb-3">
+        <InputGroup.Text className="">Bill: $</InputGroup.Text>
+        <Form.Control
+          type="number"
+          placeholder="0.00"
+          value={bill}
+          onChange={(e) => {
+            e.preventDefault();
+            validateBill(e.target.value);
+          }}
+        />
+      </InputGroup>
+    );
+  }
+
+  if (!tableIds.includes(id)) {
+    return <RedirectToHome />;
+  }
+
   return (
     <Form
       onSubmit={(e) => {
@@ -82,7 +111,6 @@ const TableForm = () => {
           </Form.Select>
         </InputGroup>
       </Form.Group>
-
       <InputGroup className="mb-3">
         <InputGroup.Text className="">People</InputGroup.Text>
         <Form.Control
@@ -102,19 +130,8 @@ const TableForm = () => {
           }}
         />
       </InputGroup>
-      <InputGroup className="mb-3">
-        <InputGroup.Text className="">Bill: $</InputGroup.Text>
-        <Form.Control
-          type="number"
-          placeholder="0.00"
-          value={bill}
-          onChange={(e) => {
-            e.preventDefault();
-            validateBill(e.target.value);
-          }}
-        />
-      </InputGroup>
 
+      {billInput}
       <Form.Group className="mb-3">
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>

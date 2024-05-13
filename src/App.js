@@ -10,7 +10,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 
 import { fetchTables } from "./redux/tablesRedux";
 
-const RedirectToHome = () => {
+export const RedirectToHome = () => {
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/");
