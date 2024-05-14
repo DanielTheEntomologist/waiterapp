@@ -14,14 +14,10 @@ import { updateTableRequest } from "../../redux/tablesRedux";
 import { RedirectToHome } from "../../App";
 
 const TableForm = () => {
-  // const { id, description } = table;
   const { tableId } = useParams();
   const id = tableId;
-  // console.log("id of table from url parse", id);
-  let thisTable = useSelector((state) => {
-    // console.log("state", state, "trying to get table by id");
-    return select.tables.byId(state, id);
-  });
+
+  let thisTable = useSelector((state) => select.tables.byId(state, tableId));
   const tables = useSelector(select.tables.all);
   const tableIds = tables.map((table) => table.id);
 

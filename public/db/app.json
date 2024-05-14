@@ -33,15 +33,15 @@
       "bill": "0"
     },
     {
-      "id": "6",
-      "description": "Table 6",
+      "id": "5",
+      "description": "Table 5",
       "status": "free",
       "people": "0",
       "peopleMax": "4",
       "bill": "0"
     },
     {
-      "id": "7",
+      "id": "6",
       "description": "Table 6",
       "status": "free",
       "people": "0",
