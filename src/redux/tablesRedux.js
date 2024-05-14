@@ -1,7 +1,7 @@
 //tableRedux.js
 
-import { redirect } from "react-router-dom";
 import initialState from "./initialState";
+import { API_URL } from "../config";
 
 // Actions
 const ADD_TABLE = "ADD_TABLE";
@@ -35,7 +35,7 @@ export const updateTables = (tables) => ({
 export const fetchTables = () => {
   console.log("fetching tables");
   return (dispatch) => {
-    fetch("http://localhost:3131/api/tables")
+    fetch(API_URL + "/tables")
       .then((response) => response.json())
       .then((tables) => dispatch(updateTables(tables)));
   };
@@ -49,7 +49,7 @@ export const addTableRequest = (newTable) => {
     body: JSON.stringify(newTable),
   };
   return (dispatch) => {
-    fetch("http://localhost:3131/api/tables", options).then(() =>
+    fetch(API_URL + "/tables", options).then(() =>
       dispatch(addTable(newTable))
     );
   };
