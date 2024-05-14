@@ -19,7 +19,6 @@ const TableForm = () => {
 
   let thisTable = useSelector((state) => select.tables.byId(state, tableId));
   const tables = useSelector(select.tables.all);
-  const tableIds = tables.map((table) => table.id);
 
   const [status, setStatus] = useState(undefined);
   const [people, setPeople] = useState(undefined);
@@ -87,25 +86,6 @@ const TableForm = () => {
     setBill(0);
   }
 
-  // if (!tableIds.includes(id)) {
-  //   return <RedirectToHome />;
-  // }
-
-  // const updateTable = (tableData) => {
-  //   console.log(tableData);
-  //   const options = {
-  //     method: "PATCH",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(tableData),
-  //   };
-  //   fetch("http://localhost:3131/tables/" + tableData.id, options).then(
-  //     (response) => {
-  //       console.log(response);
-  //     }
-  //   );
-  // };
   const dispatch = useDispatch();
 
   if (thisTable === undefined) {
