@@ -3,26 +3,26 @@
     {
       "id": "1",
       "description": "2nd window table",
-      "status": "free",
-      "people": "0",
-      "peopleMax": "4",
-      "bill": "0"
+      "status": "busy",
+      "people": 5,
+      "peopleMax": 5,
+      "bill": 5
     },
     {
       "id": "2",
       "description": "1st window table",
-      "status": "free",
-      "people": "0",
-      "peopleMax": "4",
-      "bill": "0"
+      "status": "busy",
+      "people": 2,
+      "peopleMax": 4,
+      "bill": 21
     },
     {
       "id": "3",
       "description": "1st bar table",
-      "status": "free",
-      "people": "0",
-      "peopleMax": "4",
-      "bill": "0"
+      "status": "busy",
+      "people": 0,
+      "peopleMax": 0,
+      "bill": 0
     },
     {
       "id": "4",

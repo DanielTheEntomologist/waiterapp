@@ -1,5 +1,6 @@
 //tableRedux.js
 
+import { redirect } from "react-router-dom";
 import initialState from "./initialState";
 
 // Actions
@@ -32,13 +33,13 @@ export const updateTables = (tables) => ({
   payload: tables,
 });
 export const fetchTables = () => {
+  console.log("fetching tables");
   return (dispatch) => {
     fetch("http://localhost:3131/api/tables")
       .then((response) => response.json())
       .then((tables) => dispatch(updateTables(tables)));
   };
 };
-
 export const addTableRequest = (newTable) => {
   const options = {
     method: "POST",
@@ -50,6 +51,21 @@ export const addTableRequest = (newTable) => {
   return (dispatch) => {
     fetch("http://localhost:3131/api/tables", options).then(() =>
       dispatch(addTable(newTable))
+    );
+  };
+};
+export const updateTableRequest = (tableData) => {
+  console.log("updating tables request with:", tableData);
+  const options = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(tableData),
+  };
+  return () => {
+    fetch("http://localhost:3131/api/tables/" + tableData.id, options).then(
+      () => fetchTables()
     );
   };
 };

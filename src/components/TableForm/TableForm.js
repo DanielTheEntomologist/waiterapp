@@ -2,12 +2,14 @@ import styles from "./TableForm.module.scss";
 
 import { useParams } from "react-router-dom";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import select from "../../redux/selectors";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
+
+import { updateTableRequest } from "../../redux/tablesRedux";
 
 import { RedirectToHome } from "../../App";
 
@@ -15,14 +17,18 @@ const TableForm = () => {
   // const { id, description } = table;
   const { tableId } = useParams();
   const id = tableId;
-
+  // console.log("id of table from url parse", id);
+  let thisTable = useSelector((state) => {
+    // console.log("state", state, "trying to get table by id");
+    return select.tables.byId(state, id);
+  });
   const tables = useSelector(select.tables.all);
-  const tableIds = Object.keys(tables);
+  const tableIds = tables.map((table) => table.id);
 
-  const [status, setStatus] = useState("free");
-  const [people, setPeople] = useState(0);
-  const [peopleMax, setPeopleMax] = useState(10);
-  const [bill, setBill] = useState(0);
+  const [status, setStatus] = useState(undefined);
+  const [people, setPeople] = useState(undefined);
+  const [peopleMax, setPeopleMax] = useState(undefined);
+  const [bill, setBill] = useState(undefined);
 
   const validatePeopleMax = (value) => {
     const newValue = parseInt(value);
@@ -77,12 +83,46 @@ const TableForm = () => {
     );
   }
 
-  if ((status === "free" || status === "cleaning") && people !== 0) {
+  if (
+    (status === "free" || status === "cleaning" || status === "reserved") &&
+    (bill !== 0 || people !== 0)
+  ) {
     setPeople(0);
+    setBill(0);
   }
 
-  if (!tableIds.includes(id)) {
+  // if (!tableIds.includes(id)) {
+  //   return <RedirectToHome />;
+  // }
+
+  // const updateTable = (tableData) => {
+  //   console.log(tableData);
+  //   const options = {
+  //     method: "PATCH",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(tableData),
+  //   };
+  //   fetch("http://localhost:3131/tables/" + tableData.id, options).then(
+  //     (response) => {
+  //       console.log(response);
+  //     }
+  //   );
+  // };
+  const dispatch = useDispatch();
+
+  if (thisTable === undefined) {
     return <RedirectToHome />;
+  }
+
+  if (tables.length === 0) {
+    return <p>Loading Table...</p>;
+  } else if (status === undefined) {
+    setStatus(thisTable.status);
+    setBill(thisTable.bill);
+    setPeople(thisTable.people);
+    setPeopleMax(thisTable.peopleMax);
   }
 
   return (
@@ -92,6 +132,7 @@ const TableForm = () => {
       }}
     >
       <div className="h3 d-flex justify-content-start p-3">Table {id} </div>
+      <div>{thisTable.description}</div>
       <Form.Group className="mb-3">
         <InputGroup>
           <InputGroup.Text className="">Status</InputGroup.Text>
@@ -131,10 +172,23 @@ const TableForm = () => {
       </InputGroup>
 
       {billInput}
-      <Form.Group className="mb-3">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group>
-      <Button variant="primary" type="submit">
+
+      <Button
+        variant="primary"
+        type="button"
+        onClick={(e) => {
+          e.preventDefault();
+          dispatch(
+            updateTableRequest({
+              id: thisTable.id,
+              status: status,
+              people: people,
+              peopleMax: peopleMax,
+              bill: bill,
+            })
+          );
+        }}
+      >
         Submit
       </Button>
     </Form>
