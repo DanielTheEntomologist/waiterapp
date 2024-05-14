@@ -16,7 +16,6 @@ const TableList = () => {
 
   if (tables.length === 0) {
     tablesListContent = <p>Loading...</p>;
-    console.log("Loading...", tables);
   }
 
   if (tables.length > 0) {

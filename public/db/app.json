@@ -2,27 +2,51 @@
   "tables": [
     {
       "id": "1",
-      "description": "2nd window table"
+      "description": "2nd window table",
+      "status": "free",
+      "people": "0",
+      "peopleMax": "4",
+      "bill": "0"
     },
     {
       "id": "2",
-      "description": "1st window table"
+      "description": "1st window table",
+      "status": "free",
+      "people": "0",
+      "peopleMax": "4",
+      "bill": "0"
     },
     {
       "id": "3",
-      "description": "1st bar table"
+      "description": "1st bar table",
+      "status": "free",
+      "people": "0",
+      "peopleMax": "4",
+      "bill": "0"
     },
     {
       "id": "4",
-      "description": "2nd bar table"
+      "description": "2nd bar table",
+      "status": "free",
+      "people": "0",
+      "peopleMax": "4",
+      "bill": "0"
     },
     {
       "id": "6",
-      "description": "Table 6"
+      "description": "Table 6",
+      "status": "free",
+      "people": "0",
+      "peopleMax": "4",
+      "bill": "0"
     },
     {
       "id": "7",
-      "description": "Table 6"
+      "description": "Table 6",
+      "status": "free",
+      "people": "0",
+      "peopleMax": "4",
+      "bill": "0"
     }
   ],
   "reservations": [

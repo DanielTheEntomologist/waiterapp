@@ -8,8 +8,6 @@ import select from "../../redux/selectors";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 import { RedirectToHome } from "../../App";
 
@@ -28,7 +26,6 @@ const TableForm = () => {
 
   const validatePeopleMax = (value) => {
     const newValue = parseInt(value);
-    console.log("newValue", newValue);
     if (isNaN(newValue)) {
       return setPeopleMax(0);
     } else if (newValue < 0) {
@@ -41,7 +38,6 @@ const TableForm = () => {
   };
   const validatePeople = (value) => {
     const newValue = parseInt(value);
-    console.log("newValue", newValue);
     if (isNaN(newValue)) {
       return setPeople(0);
     } else if (newValue < 0) {
@@ -54,7 +50,6 @@ const TableForm = () => {
   };
   const validateBill = (value) => {
     const newValue = Number(value);
-    console.log("newValue", newValue);
     if (isNaN(newValue)) {
       return setBill(0);
     } else if (newValue < 0) {
@@ -80,6 +75,10 @@ const TableForm = () => {
         />
       </InputGroup>
     );
+  }
+
+  if ((status === "free" || status === "cleaning") && people !== 0) {
+    setPeople(0);
   }
 
   if (!tableIds.includes(id)) {
