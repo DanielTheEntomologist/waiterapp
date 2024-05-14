@@ -26,7 +26,7 @@
     "sass": "^1.72.0"
   },
   "scripts": {
-    "devstart": "npm-run-all -p start:*",
+    "devstart": "npm-run-all -p devstart:*",
     "devstart:react": "react-scripts start",
     "devstart:server": "json-server --port 3131 --no-cors --delay 250 --watch public/db/app.json --routes public/db/routes.json",
     "build": "react-scripts build",

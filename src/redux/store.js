@@ -20,13 +20,14 @@ const subreducers = {
 
 const reducer = combineReducers(subreducers);
 
-const store = createStore(
-  reducer,
-  initialState,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+const devtools =
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+
+let wares = [applyMiddleware(thunk)];
+if (process.env.NODE_ENV === "development") {
+  wares.push(devtools);
+}
+
+const store = createStore(reducer, initialState, compose(...wares));
 
 export default store;
